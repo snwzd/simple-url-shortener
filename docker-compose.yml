@@ -1,0 +1,25 @@
+services:
+  urshsh:
+    image: notmde/urshsh:${URSHSH_TAG}
+    ports:
+      - "5000:5000"
+    environment:
+      - APP_PORT=5000
+      - REDIS_URI=redis://redis:6379
+      - DEV_FLAG=1
+    depends_on:
+      - redis
+
+  urshunsh:
+    image: notmde/urshunsh:${URSHUNSH_TAG}
+    ports:
+      - "5001:5001"
+    environment:
+      - APP_PORT=5001
+      - REDIS_URI=redis://redis:6379
+      - DEV_FLAG=1
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
